@@ -67,9 +67,9 @@ with col1:
     st.text("Upload sales history in exactly given format")
 with col2:
     st.subheader('About ULS Forecaster:')
-    st.markdown("Generate sales forecast for multiple products with statistial and machine learning algorithms.  \n"
+    st.markdown("Generate sales forecast for multiple products with statistical and machine learning algorithms.  \n"
     "**Statistical Models**: Naive, Theta, Exponential Smoothing and TBATS models  \n"
-    "**Machine Learning Models**: Linear Regression, K-Nearest Neighbors, Random Foreast, Gradient Boosting, \n"
+    "**Machine Learning Models**: Linear Regression, K-Nearest Neighbors, Random Forest, Gradient Boosting, \n"
     "Extreme Gradient Boosting, Support Vector Machines, Extra Trees \n"
     )
     
