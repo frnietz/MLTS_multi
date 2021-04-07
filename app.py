@@ -116,7 +116,7 @@ if uploaded_file is not None:
         else:
             forecaster = model
         y = df2['total'].reset_index(drop=True)
-        y_train, y_test = temporal_train_test_split(y, test_size = 12)
+        y_train, y_test = temporal_train_test_split(y, test_size = 0.25)
         fh = np.arange(y_test.shape[0]) + 1
         forecaster.fit(y_train)
         y_pred = forecaster.predict(fh)
