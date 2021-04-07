@@ -98,7 +98,7 @@ if uploaded_file is not None:
     models.append(('Extra Trees', ExtraTreesRegressor()))
     models.append(('Naive', NaiveForecaster(strategy="last", sp=12)))
     models.append(('Theta', ThetaForecaster(sp=12)))
-    models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="additive", sp=12)))
+    models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="multiplicative", sp=12)))
     models.append(('TBATS', TBATS(sp=12, use_trend=True, use_box_cox=False)))
     
     forecast_horizon = st.sidebar.slider(label = 'Forecast Length (months)',min_value = 3, max_value = 36, value = 12)
@@ -212,7 +212,7 @@ if uploaded_file is not None:
         
         ax.plot(dn_forecast['total'],'o-',color='orange' ,label="predicted")
         ax.plot(dn_test['total'], 'o-',color='blue',label="actual")
-        ax.set_title('Testing the performance: last 12 month actual vs forecast')
+        ax.set_title('Testing the performance: actual vs forecast')
         ax.legend()
         st.pyplot(fig)
         #plt.show()
