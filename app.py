@@ -103,43 +103,46 @@ if uploaded_file is not None:
     
     forecast_horizon = st.sidebar.slider(label = 'Forecast Length (months)',min_value = 3, max_value = 36, value = 12)
     window_length = st.sidebar.slider(label = 'Sliding Window Length ',min_value = 1, value = 12)
-    # evaluate each model in turn
-    results1 = []
-    names = []
-    dn_forecast = []
-    dn_test =[]
     
-    
-    for name, model in models:
-        if name == 'LR' or name == 'KNN' or name == 'RF' or name == 'GB' or name == 'XGBoost' or name == 'SVM' or name == 'Extra Trees':
-            forecaster = ReducedRegressionForecaster(regressor=model, window_length=window_length,strategy='recursive')
-        else:
-            forecaster = model
-        y = df2['total'].reset_index(drop=True)
-        y_train, y_test = temporal_train_test_split(y, test_size = 0.25)
-        fh = np.arange(y_test.shape[0]) + 1
-        forecaster.fit(y_train)
-        y_pred = forecaster.predict(fh)
-        dn_forecast.append(y_pred)
-        dn_test.append(y_test)
-        accuracy_results = mean_squared_error(y_test,y_pred,squared=False)
-        results1.append(accuracy_results)
-        names.append(name)
-        msg = "%s: %.0f " % (name, accuracy_results.mean())
-        #print(msg)
-    #plot algorithm comparison
-    fig, ax = plt.subplots(figsize=(15,5))
-    ax.scatter(names,results1)
-    ax.set_title('Algorithm Comparison (Minimum RMSE)')
-    ax.set_ylabel('RMSE')
-    ax.set_xticklabels(names)
-    st.pyplot(fig)
-    #plt.show()
-    
-    res = {names[i]: results1[i] for i in range(len(names))}
-    
-    regressor=min(res, key=res.get)
-    st.write(regressor+' is the best performing model with minimum RMSE')
+    if df2.shape[0]<36:
+        regressor = 'Naive'
+    else:
+        # evaluate each model in turn
+        results1 = []
+        names = []
+        dn_forecast = []
+        dn_test =[]
+
+        for name, model in models:
+            if name == 'LR' or name == 'KNN' or name == 'RF' or name == 'GB' or name == 'XGBoost' or name == 'SVM' or name == 'Extra Trees':
+                forecaster = ReducedRegressionForecaster(regressor=model, window_length=window_length,strategy='recursive')
+            else:
+                forecaster = model
+            y = df2['total'].reset_index(drop=True)
+            y_train, y_test = temporal_train_test_split(y, test_size = 0.25)
+            fh = np.arange(y_test.shape[0]) + 1
+            forecaster.fit(y_train)
+            y_pred = forecaster.predict(fh)
+            dn_forecast.append(y_pred)
+            dn_test.append(y_test)
+            accuracy_results = mean_squared_error(y_test,y_pred,squared=False)
+            results1.append(accuracy_results)
+            names.append(name)
+            msg = "%s: %.0f " % (name, accuracy_results.mean())
+            #print(msg)
+        #plot algorithm comparison
+        fig, ax = plt.subplots(figsize=(15,5))
+        ax.scatter(names,results1)
+        ax.set_title('Algorithm Comparison (Minimum RMSE)')
+        ax.set_ylabel('RMSE')
+        ax.set_xticklabels(names)
+        st.pyplot(fig)
+        #plt.show()
+
+        res = {names[i]: results1[i] for i in range(len(names))}
+
+        regressor=min(res, key=res.get)
+        st.write(regressor+' is the best performing model with minimum RMSE')
     
     def select_regressor(selection):
         regressors = {
