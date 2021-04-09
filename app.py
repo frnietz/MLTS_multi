@@ -195,7 +195,7 @@ if uploaded_file is not None:
         dn_forecast = []
         dn_test =[]
         results = []
-        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS':
+        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS' or regressor == 'Exp_Smoothing_Small':
             regressor = select_regressor(regressor)
             forecaster = regressor
         else:
