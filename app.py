@@ -61,10 +61,13 @@ st.title("Advanced Time Series Forecasting Tool")
 col1,col2 = st.beta_columns(2)
 with col1:
     st.subheader('Example csv file format to upload:')
+    st.text("To utilize all models, please provide at least **36 data points** of history")
+    st.text("For smaller datasets, tool will use **Exponential Smoothing**")
     url ='https://raw.githubusercontent.com/frnietz/MLTS_multi/main/MultiProductTSMLexample.csv'
     df_sample=pd.read_csv(url)
     st.write(df_sample)
     st.text("Upload sales history in exactly given format")
+    
 with col2:
     st.subheader('About ULS Forecaster:')
     st.write("Generate sales forecast for multiple products with statistical and machine learning algorithms.  \n"
@@ -73,11 +76,6 @@ with col2:
     "Extreme Gradient Boosting, Support Vector Machines, Extra Trees \n"
     )
 
-st.write("To utilize all models, please provide at least **36 data points** of history.  \n"
-    "For example, if you will provide monthly sales for forecasting, you need to provide **36 months data**  \n"
-    "For smaller datasets, tool will use **Exponential Smoothing**   \n"
-    )
-            
 
 uploaded_file = st.sidebar.file_uploader("Upload a file in csv format", type=("csv"))
 st.sidebar.title("Upload Your Sales History")
