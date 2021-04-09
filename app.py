@@ -173,7 +173,7 @@ if uploaded_file is not None:
     def calculate_forecast(df_, regressor, forecast_horizon, window_length):
         df = df_.copy()
         new_forecast = []
-        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS':
+        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS' or regressor == 'Exp_Smoothing_Small':
             regressor = select_regressor(regressor)
             forecaster = regressor
         else:
