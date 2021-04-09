@@ -69,10 +69,8 @@ with col1:
 with col2:
     st.subheader('About ULS Forecaster:')
     st.write("Generate sales forecast for multiple products with statistical and machine learning algorithms.  \n"
-    "**Statistical Models**: Naive, Theta, Exponential Smoothing and TBATS   \n"
-    "**Machine Learning Models**: Linear Regression, K-Nearest Neighbors, Random Forest, Gradient Boosting, \n"
-    "Extreme Gradient Boosting, Support Vector Machines, Extra Trees \n"
-  
+    "To utilize all models, your data should have at least 36 data points (such as 36 months)  \n"
+ 
     )
 
 
