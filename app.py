@@ -83,6 +83,7 @@ st.sidebar.title("Upload Your Sales History")
 
 def load_data(file):
     df = pd.read_csv(file)
+    df['date']=pd.to_datetime(df['date'])
     df2 =df.drop(['date'], axis=1)
     df2=df2.replace(0, 0.01)
     df2['total']=df2.sum(axis=1)
