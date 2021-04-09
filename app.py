@@ -105,7 +105,7 @@ if uploaded_file is not None:
     window_length = st.sidebar.slider(label = 'Sliding Window Length ',min_value = 1, value = 12)
     
     if df2.shape[0]<36:
-        regressor = ExponentialSmoothing(trend="add", seasonal="multiplicative", sp=12)
+        regressor = 'Exp_Smoothing'
     else:
         # evaluate each model in turn
         results1 = []
