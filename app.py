@@ -155,7 +155,7 @@ if uploaded_file is not None:
         'Extra Trees': ExtraTreesRegressor(),
         'Naive' : NaiveForecaster(strategy="last", sp=12),
         'Theta': ThetaForecaster(sp=12),
-        'Exp_Smoothing': ExponentialSmoothing(trend="add", seasonal="multiplicative", sp=12),
+        'Exp_Smoothing': ExponentialSmoothing(trend="add", seasonal="multiplicative", sp=6),
         'TBATS': TBATS(sp=12, use_trend=True, use_box_cox=False)
          }
 
