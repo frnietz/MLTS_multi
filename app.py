@@ -61,8 +61,6 @@ st.title("Advanced Time Series Forecasting Tool")
 col1,col2 = st.beta_columns(2)
 with col1:
     st.subheader('Example csv file format to upload:')
-    st.text("To utilize all models, please provide at least **36 data points** of history")
-    st.text("For smaller datasets, tool will use **Exponential Smoothing**")
     url ='https://raw.githubusercontent.com/frnietz/MLTS_multi/main/MultiProductTSMLexample.csv'
     df_sample=pd.read_csv(url)
     st.write(df_sample)
@@ -71,9 +69,10 @@ with col1:
 with col2:
     st.subheader('About ULS Forecaster:')
     st.write("Generate sales forecast for multiple products with statistical and machine learning algorithms.  \n"
-    "**Statistical Models**: Naive, Theta, Exponential Smoothing and TBATS models  \n"
+    "**Statistical Models**: Naive, Theta, Exponential Smoothing and TBATS   \n"
     "**Machine Learning Models**: Linear Regression, K-Nearest Neighbors, Random Forest, Gradient Boosting, \n"
     "Extreme Gradient Boosting, Support Vector Machines, Extra Trees \n"
+  
     )
 
 
