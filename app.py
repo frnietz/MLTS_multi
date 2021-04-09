@@ -73,7 +73,7 @@ with col2:
     "Extreme Gradient Boosting, Support Vector Machines, Extra Trees \n"
     )
 
-st.text("To utilize all models, please provide at least **36 data points** of history.  \n"
+st.write("To utilize all models, please provide at least **36 data points** of history.  \n"
     "For example, if you will provide monthly sales for forecasting, you need to provide **36 months data**  \n"
     "For smaller datasets, tool will use **Exponential Smoothing**   \n"
     )
