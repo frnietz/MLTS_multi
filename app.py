@@ -98,7 +98,7 @@ if uploaded_file is not None:
     models.append(('Extra Trees', ExtraTreesRegressor()))
     models.append(('Naive', NaiveForecaster(strategy="mean", sp=12)))
     models.append(('Theta', ThetaForecaster(sp=12)))
-    models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="mul", sp=6)))
+    models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="mul")))
     models.append(('TBATS', TBATS(sp=12, use_trend=True, use_box_cox=False)))
     
     forecast_horizon = st.sidebar.slider(label = 'Forecast Length (months)',min_value = 3, max_value = 36, value = 12)
@@ -155,7 +155,7 @@ if uploaded_file is not None:
         'Extra Trees': ExtraTreesRegressor(),
         'Naive' : NaiveForecaster(strategy="last", sp=12),
         'Theta': ThetaForecaster(sp=12),
-        'Exp_Smoothing': ExponentialSmoothing(trend="add", seasonal="mul",sp=6),
+        'Exp_Smoothing': ExponentialSmoothing(trend="add", seasonal="mul"),
         'TBATS': TBATS(sp=12, use_trend=True, use_box_cox=False)
          }
 
