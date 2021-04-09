@@ -72,7 +72,13 @@ with col2:
     "**Machine Learning Models**: Linear Regression, K-Nearest Neighbors, Random Forest, Gradient Boosting, \n"
     "Extreme Gradient Boosting, Support Vector Machines, Extra Trees \n"
     )
-    
+
+st.markdown("To utilize all models, please provide at least 36 data points of history \n"
+    "For example, if you will provide monthly sales for forecasting, you need to provide 36 months data \n"
+    "For smaller datasets, tool will use Exponential Smoothing \n"
+    )
+            
+
 uploaded_file = st.sidebar.file_uploader("Upload a file in csv format", type=("csv"))
 st.sidebar.title("Upload Your Sales History")
 
@@ -98,14 +104,15 @@ if uploaded_file is not None:
     models.append(('Extra Trees', ExtraTreesRegressor()))
     models.append(('Naive', NaiveForecaster(strategy="mean", sp=12)))
     models.append(('Theta', ThetaForecaster(sp=12)))
-    models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="add", sp=4)))
+    models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="mul", sp=12)))
+    models.append(('Exp_Smoothing_Small', ExponentialSmoothing(trend="add", seasonal="add", sp=4)))
     models.append(('TBATS', TBATS(sp=12, use_trend=True, use_box_cox=False)))
     
     forecast_horizon = st.sidebar.slider(label = 'Forecast Length (months)',min_value = 3, max_value = 36, value = 12)
     window_length = st.sidebar.slider(label = 'Sliding Window Length ',min_value = 1, value = 12)
     
     if df2.shape[0]<36:
-        regressor = 'Exp_Smoothing'
+        regressor = 'Exp_Smoothing_Small'
     else:
         # evaluate each model in turn
         results1 = []
@@ -155,7 +162,8 @@ if uploaded_file is not None:
         'Extra Trees': ExtraTreesRegressor(),
         'Naive' : NaiveForecaster(strategy="last", sp=12),
         'Theta': ThetaForecaster(sp=12),
-        'Exp_Smoothing': ExponentialSmoothing(trend="add", seasonal="add",sp=4),
+        'Exp_Smoothing': ExponentialSmoothing(trend="add", seasonal="mul",sp=12),
+        'Exp_Smoothing_Small': ExponentialSmoothing(trend="add", seasonal="add",sp=4),
         'TBATS': TBATS(sp=12, use_trend=True, use_box_cox=False)
          }
 
