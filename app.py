@@ -73,8 +73,7 @@ with col2:
  
     )
 
-st.write("Statistical models: Naive, Theta, Exponential Smoothing, TBATS  \n"
-    "Machine learning models: Linear Regression, K-Neighbors, Random Forest, Gradient Boosting, Extreme Gradient Boosting, Support Vector Machine, Extra Trees  \n"
+st.write("**Statistical models:** Naive, Theta, Exponential Smoothing, TBATS. **Machine learning models:** Linear Regression, K-Neighbors, Random Forest, Gradient Boosting, Extreme Gradient Boosting, Support Vector Machine, Extra Trees  \n"
  )
 
 uploaded_file = st.sidebar.file_uploader("Upload a file in csv format", type=("csv"))
