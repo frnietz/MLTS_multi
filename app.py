@@ -64,7 +64,7 @@ with col1:
     url ='https://raw.githubusercontent.com/frnietz/MLTS_multi/main/MultiProductTSMLexample.csv'
     df_sample=pd.read_csv(url)
     st.write(df_sample)
-    st.text("Upload sales history in exactly given format")
+    st.text("Upload sales history in exactly given format including date column")
     
 with col2:
     st.subheader('About ULS Forecaster:')
@@ -122,10 +122,12 @@ if uploaded_file is not None:
         for name, model in models:
             if name == 'LR' or name == 'KNN' or name == 'RF' or name == 'GB' or name == 'XGBoost' or name == 'SVM' or name == 'Extra Trees':
                 forecaster = ReducedRegressionForecaster(regressor=model, window_length=window_length,strategy='recursive')
+            elif name == 'Exp_Smoothing_Small':
+                pass
             else:
                 forecaster = model
             y = df2['total'].reset_index(drop=True)
-            y_train, y_test = temporal_train_test_split(y, test_size = 0.25)
+            y_train, y_test = temporal_train_test_split(y, test_size = 0.33)
             fh = np.arange(y_test.shape[0]) + 1
             forecaster.fit(y_train)
             y_pred = forecaster.predict(fh)
@@ -139,7 +141,7 @@ if uploaded_file is not None:
         #plot algorithm comparison
         fig, ax = plt.subplots(figsize=(15,5))
         ax.scatter(names,results1)
-        ax.set_title('Algorithm Comparison (Minimum RMSE)')
+        ax.set_title('Algorithm Performance Comparison (Minimum RMSE)')
         ax.set_ylabel('RMSE')
         ax.set_xticklabels(names)
         st.pyplot(fig)
@@ -202,7 +204,7 @@ if uploaded_file is not None:
             forecaster = ReducedRegressionForecaster(regressor = regressor, window_length = window_length, strategy='recursive')
         for i in df.columns:
             y = df.iloc[:,df.columns.get_loc(i)].reset_index(drop=True)
-            y_train, y_test = temporal_train_test_split(y, test_size = 0.25)
+            y_train, y_test = temporal_train_test_split(y, test_size = 0.33)
             fh = np.arange(y_test.shape[0]) + 1
             forecaster.fit(y_train, fh=fh)
             y_pred = forecaster.predict(fh)
