@@ -111,8 +111,19 @@ if uploaded_file is not None:
     forecast_horizon = st.sidebar.slider(label = 'Forecast Length (months)',min_value = 3, max_value = 36, value = 12)
     window_length = st.sidebar.slider(label = 'Sliding Window Length ',min_value = 1, value = 12)
     
-    if df2.shape[0]<36:
+    
+    
+    regressor2 = st.sidebar.selectbox("Manual algorithm selection",   
+                                 ['LR','KNN',
+                                  'RF','GB','XGBoost',
+                                  'SVM', 'Extra Trees',
+                                  'Naive', 'Theta','Exp_Smoothing', 'TBATS'
+                                  ])
+    if st.button("Submit"):
+        regressor = regressor2
+    elif df2.shape[0]<36:
         regressor = 'Exp_Smoothing_Small'
+    
     else:
         # evaluate each model in turn
         results1 = []
@@ -199,7 +210,7 @@ if uploaded_file is not None:
         dn_forecast = []
         dn_test =[]
         results = []
-        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS' or regressor == 'Exp_Smoothing_Small':
+        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS' :
             regressor = select_regressor(regressor)
             forecaster = regressor
         elif regressor == regressor == 'Exp_Smoothing_Small':
