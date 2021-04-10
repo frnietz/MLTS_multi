@@ -104,7 +104,7 @@ if uploaded_file is not None:
     models.append(('Naive', NaiveForecaster(strategy="mean", sp=12)))
     models.append(('Theta', ThetaForecaster(sp=12)))
     models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="multiplicative", sp=12)))
-    models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="additive", sp=3)))
+    #models.append(('Exp_Smoothing', ExponentialSmoothing(trend="add", seasonal="additive", sp=3)))
     models.append(('TBATS', TBATS(sp=12, use_trend=True, use_box_cox=False)))
     
     forecast_horizon = st.sidebar.slider(label = 'Forecast Length (months)',min_value = 3, max_value = 36, value = 12)
@@ -174,9 +174,11 @@ if uploaded_file is not None:
     def calculate_forecast(df_, regressor, forecast_horizon, window_length):
         df = df_.copy()
         new_forecast = []
-        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS' or regressor == 'Exp_Smoothing_Small':
+        if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS':
             regressor = select_regressor(regressor)
             forecaster = regressor
+        elif regressor == regressor == 'Exp_Smoothing_Small':
+            forecaster = ExponentialSmoothing(trend="add", seasonal="additive", sp=3)
         else:
             regressor = select_regressor(regressor)
             forecaster = ReducedRegressionForecaster(regressor = regressor, window_length = window_length, strategy='recursive')
@@ -199,6 +201,8 @@ if uploaded_file is not None:
         if regressor == 'Naive' or regressor == 'Theta' or regressor == 'Exp_Smoothing' or regressor == 'TBATS' or regressor == 'Exp_Smoothing_Small':
             regressor = select_regressor(regressor)
             forecaster = regressor
+        elif regressor == regressor == 'Exp_Smoothing_Small':
+            forecaster = ExponentialSmoothing(trend="add", seasonal="additive", sp=3)
         else:
             regressor = select_regressor(regressor)
             forecaster = ReducedRegressionForecaster(regressor = regressor, window_length = window_length, strategy='recursive')
