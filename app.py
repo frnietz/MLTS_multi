@@ -65,7 +65,8 @@ with col1:
     df_sample=pd.read_csv(url)
     st.write(df_sample)
     st.text("Upload sales history in exactly given format including date column")
-    
+    st.text("Date column should be in date format")
+
 with col2:
     st.subheader('About ULS Forecaster:')
     st.write("Generate sales forecast for multiple products with statistical and machine learning algorithms.  \n"
