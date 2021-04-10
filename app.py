@@ -119,7 +119,7 @@ if uploaded_file is not None:
                                   'SVM', 'Extra Trees',
                                   'Naive', 'Theta','Exp_Smoothing', 'TBATS'
                                   ])
-    if st.button("Submit"):
+    if st.sidebar.button("Submit"):
         regressor = regressor2
     elif df2.shape[0]<36:
         regressor = 'Exp_Smoothing_Small'
