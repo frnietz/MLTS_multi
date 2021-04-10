@@ -64,7 +64,7 @@ with col1:
     url ='https://raw.githubusercontent.com/frnietz/MLTS_multi/main/MultiProductTSMLexample.csv'
     df_sample=pd.read_csv(url)
     st.write(df_sample)
-    st.text("Upload sales history in exactly given format including date column")
+    st.text("Upload sales history in exactly given format")
     st.text("Date column should be in date format")
 
 with col2:
