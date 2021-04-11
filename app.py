@@ -236,7 +236,8 @@ if uploaded_file is not None:
         #fig.suptitle('last 12 months actual vs forecast')
 
         for column in dn_test:
-            results.append(round(100*smape_loss(dn_forecast[column],dn_test[column]),1))
+            #results.append(round(100*smape_loss(dn_forecast[column],dn_test[column]),1))
+            results.append(round((100*(mean_squared_error(dn_forecast[column],dn_test[column],squared=False)/dn_test[column].mean())),1))
         
         ax.plot(dn_forecast['total'],'o-',color='orange' ,label="predicted")
         ax.plot(dn_test['total'], 'o-',color='blue',label="actual")
