@@ -267,7 +267,7 @@ if uploaded_file is not None:
     last_of_all = [smape,combined_transpose]
     final = pd.concat(last_of_all, axis=1)
     st.markdown('**Accuracy(%)** achieved for total value with model is: ')
-    st.write(smape.at['total', 'accuracy %'])
+    st.write(round(smape.at['total', 'accuracy %'],1))
     st.text('A snapshot of accuracy, sales history and forecast: ')
     st.write(final.tail())
     
