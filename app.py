@@ -144,7 +144,8 @@ if uploaded_file is not None:
             y_pred = forecaster.predict(fh)
             dn_forecast.append(y_pred)
             dn_test.append(y_test)
-            accuracy_results = mean_squared_error(y_test,y_pred,squared=False)
+            #accuracy_results = mean_squared_error(y_test,y_pred,squared=False)
+            accuracy_results = smape_loss(y_test,y_pred)            
             results1.append(accuracy_results)
             names.append(name)
             msg = "%s: %.0f " % (name, accuracy_results.mean())
@@ -235,8 +236,8 @@ if uploaded_file is not None:
         #fig.suptitle('last 12 months actual vs forecast')
 
         for column in dn_test:
-            #results.append(round(100*smape_loss(dn_forecast[column],dn_test[column]),1))
-            results.append(round((100*(mean_squared_error(dn_forecast[column],dn_test[column],squared=False)/dn_test[column].mean())),1))
+            results.append(round(100*smape_loss(dn_forecast[column],dn_test[column]),1))
+            #results.append(round((100*(mean_squared_error(dn_forecast[column],dn_test[column],squared=False)/dn_test[column].mean())),1))
         
         ax.plot(dn_forecast['total'],'o-',color='orange' ,label="predicted")
         ax.plot(dn_test['total'], 'o-',color='blue',label="actual")
