@@ -18,6 +18,7 @@ from sktime.utils.plotting import plot_series
 
 from sktime.forecasting.model_selection import SlidingWindowSplitter
 from sktime.forecasting.model_selection import ForecastingGridSearchCV
+from sklearn.metrics import mean_squared_error
 
 from sklearn.metrics import mean_squared_error
 import math
