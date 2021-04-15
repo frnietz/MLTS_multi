@@ -154,7 +154,7 @@ if uploaded_file is not None:
         fig, ax = plt.subplots(figsize=(15,5))
         ax.scatter(names,results1)
         ax.set_title('Algorithm Performance Comparison (Minimum sMAPE Forecast Error)')
-        ax.set_ylabel('RMSE')
+        ax.set_ylabel('Forecast Error Loss (sMAPE Loss)')
         ax.set_xticklabels(names)
         st.pyplot(fig)
         #plt.show()
