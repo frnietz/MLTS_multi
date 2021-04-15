@@ -153,7 +153,7 @@ if uploaded_file is not None:
         #plot algorithm comparison
         fig, ax = plt.subplots(figsize=(15,5))
         ax.scatter(names,results1)
-        ax.set_title('Algorithm Performance Comparison (Minimum RMSE)')
+        ax.set_title('Algorithm Performance Comparison (Minimum sMAPE Forecast Error)')
         ax.set_ylabel('RMSE')
         ax.set_xticklabels(names)
         st.pyplot(fig)
