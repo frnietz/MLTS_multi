@@ -55,7 +55,7 @@ st.set_page_config(layout="wide")
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-#st.title("ULS Forecaster")
+st.title("ULS Forecaster")
 st.title("Advanced Time Series Forecasting Tool")
 
 
@@ -162,7 +162,7 @@ if uploaded_file is not None:
         res = {names[i]: results1[i] for i in range(len(names))}
 
         regressor=min(res, key=res.get)
-        st.write(regressor+' is the best performing model with minimum RMSE')
+        st.write(regressor+' is the best performing model with minimum sMAPE Error')
     
     def select_regressor(selection):
         regressors = {
@@ -284,6 +284,5 @@ if uploaded_file is not None:
     st.markdown(href, unsafe_allow_html=True)
 
 else:
-    #st.write("Contact us for further support or more information")
-    st.write("Click here for support")
+    st.write("Contact us for further support or more information")
 
