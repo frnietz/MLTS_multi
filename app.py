@@ -55,7 +55,7 @@ st.set_page_config(layout="wide")
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.title("ULS Forecaster")
+#st.title("ULS Forecaster")
 st.title("Advanced Time Series Forecasting Tool")
 
 
@@ -69,7 +69,7 @@ with col1:
     st.text("Date column should be in date format")
 
 with col2:
-    st.subheader('About ULS Forecaster:')
+    #st.subheader('About ULS Forecaster:')
     st.write("Generate sales forecast for multiple products with statistical and machine learning algorithms.  \n"
     "To utilize all models, your data should have at least 36 data points.  \n"
     "For smaller data sets of sales history, tool will use Exponential Smoothing  \n"
@@ -284,4 +284,6 @@ if uploaded_file is not None:
     st.markdown(href, unsafe_allow_html=True)
 
 else:
-    st.write("Contact us for further support or more information")
+    #st.write("Contact us for further support or more information")
+    st.write("Click here for support")
+
