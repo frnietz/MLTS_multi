@@ -69,7 +69,7 @@ with col1:
     st.text("Date column should be in date format")
 
 with col2:
-    #st.subheader('About ULS Forecaster:')
+    st.subheader('About Forecaster:')
     st.write("Generate sales forecast for multiple products with statistical and machine learning algorithms.  \n"
     "To utilize all models, your data should have at least 36 data points.  \n"
     "For smaller data sets of sales history, tool will use Exponential Smoothing  \n")
